@@ -25,7 +25,7 @@ public class mouseAction {
 		
 		WebElement searchtype=driver.findElement(By.xpath("//input[@id='doc-search-box-input']"));
 		searchtype.sendKeys("test automation");
-		
+		//rrtrtret tret rtr e
 		a.sendKeys(Keys.ENTER).perform();
 
 	}
