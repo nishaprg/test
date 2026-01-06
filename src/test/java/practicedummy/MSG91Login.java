@@ -30,7 +30,8 @@ public class MSG91Login {
 		msg91.Websitelogin();
 		Thread.sleep(2000);
 		//msg91.Whatsapp();
-		msg91.templateCreate();
+		//msg91.templateCreate();
+		msg91.logs();
 
 	}
 
@@ -169,5 +170,23 @@ public class MSG91Login {
 		WebElement templatesave=driver.findElement(By.xpath("//button[@class='mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-base']"));
 		templatesave.click();
 	}
-
+	public void logs() throws InterruptedException {
+		WebElement log= driver.findElement(By.xpath("//a[@href='/hello-new/m/l/whatsapp/logs/wa']"));
+		log.click();
+		
+		WebElement numdropdown= driver.findElement(By.xpath("//*[@id=\"mat-mdc-form-field-label-5\"]"));
+		numdropdown.click();
+		Thread.sleep(3000);
+		List<WebElement> numlist= driver.findElements(By.xpath("//div[@role='listbox']"));
+		for(WebElement list:numlist) {
+			String number= list.getText();
+			System.out.println(number);
+			if(number.contains("856")) {
+				list.click();
+				break;
+			}
+			
+		}
+	}
+		
 }
