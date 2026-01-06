@@ -1,14 +1,23 @@
 package practicedummy;
 
 import java.time.Duration;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
+import org.junit.platform.commons.util.Preconditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -87,72 +96,54 @@ public class MSG91Login {
 		WebElement sendwhatsapp = driver.findElement(By.xpath(
 				"//div[@class='left-menu-center-container']/ng-component/app-whatsapp-left-menu/div/mat-nav-list/div[1]//a[1]/span/span"));
 		sendwhatsapp.click();
-
-//		String parentid=driver.getWindowHandle();
-//		System.out.println(parentid);
 		WebElement entermanually = driver.findElement(By.xpath("//textarea[@id='mat-input-2']"));
 		entermanually.click();
 		entermanually.sendKeys("918435390731");
 
 		WebElement number = driver.findElement(By.xpath("//input[@id='mat-input-1']"));
-		number.click();
+		//number.click();
 		number.sendKeys("917024100856");
 		Thread.sleep(5000);
+
 		List<WebElement> allnumber = driver.findElements(By.xpath("//div[@id=\"cdk-overlay-1\"]"));
 		for (WebElement num : allnumber) {
 			String sendnumber = num.getText();
 			System.out.println(sendnumber);
 			Thread.sleep(3000);
 			if (sendnumber.equals("917024100856")) {
-
 				num.click();
-//				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-//				wait.until(ExpectedConditions.elementToBeClickable(num));
 				break;
-
 			}
 		}
-
 		Thread.sleep(5000);
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-//		wait.until(ExpectedConditions.elementToBeClickable(number));
-		
-		
 
-//		WebElement inputtemp=driver.findElement(By.xpath("//*[@id=\"mat-mdc-dialog-1\"]/div/div/msg91-send-whatsapp-dialog/div/div[1]/mat-dialog-content/form/div/div[2]/div[1]/msg91-whatsapp-template-dropdown"));
-		try {
-			WebElement templatelist = driver.findElement(By.xpath("//*[@id=\"mat-mdc-dialog-0\"]/div/div/msg91-send-whatsapp-dialog/div/div[1]/mat-dialog-content/form/div/div[2]/div[1]/msg91-whatsapp-template-dropdown/div/mat-form-field"));
-			templatelist.click();
-			Thread.sleep(3000);
-			templatelist.sendKeys("new_test");
-			Thread.sleep(3000);
-		} catch (Exception e) {
-			WebElement templatelist = driver.findElement(By.xpath("//*[@id=\"mat-mdc-dialog-0\"]/div/div/msg91-send-whatsapp-dialog/div/div[1]/mat-dialog-content/form/div/div[2]/div[1]/msg91-whatsapp-template-dropdown/div/mat-form-field"));
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].value='new_test'", templatelist);
-
-		}
-		List<WebElement> template = driver.findElements(By.xpath("//*[@id=\"mat-autocomplete-1\"]"));
+		WebElement template1 = driver.findElement(By.xpath("//input[@id='mat-input-3']"));
+		// template1.click();
+		template1.sendKeys("new_test");
+//		Thread.sleep(5000);
+//		template1.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+		Thread.sleep(5000);
+		List<WebElement> template = driver.findElements(By.xpath("//div[@id='mat-autocomplete-1']"));
 		for (WebElement temp : template) {
 			String templatename = temp.getText();
-
 			System.out.println(templatename);
-	
+			
 
 			Thread.sleep(5000);
 			if (templatename.equals("new_test")) {
+				temp.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
 				temp.click();
 				break;
 			}
-		}
+	}
+		Thread.sleep(5000);
 		WebElement varvalue = driver.findElement(By.xpath("//input[@id='mat-input-4']"));
 		varvalue.sendKeys("prgtest");
 
 		WebElement reviewsend = driver.findElement(By.xpath(
 				"//mat-dialog-container[@id='mat-mdc-dialog-0']/div/div/msg91-send-whatsapp-dialog/div/div[1]/mat-dialog-actions/div[2]/button[2]"));
 		reviewsend.click();
-		WebElement send = driver.findElement(By.xpath(
-				"//mat-dialog-container[@id='mat-mdc-dialog-1']/div/div[1]/msg91-send-whatsapp-dialog/div/div[2]/mat-dialog-actions/button[2]"));
+		WebElement send = driver.findElement(By.xpath("//*[@id=\"mat-mdc-dialog-0\"]/div/div/msg91-send-whatsapp-dialog/div/div[2]/mat-dialog-actions/button[2]"));
 		send.click();
 
 	}
