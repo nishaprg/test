@@ -101,7 +101,7 @@ public class MSG91Login {
 		entermanually.sendKeys("918435390731");
 
 		WebElement number = driver.findElement(By.xpath("//input[@id='mat-input-1']"));
-		//number.click();
+		// number.click();
 		number.sendKeys("917024100856");
 		Thread.sleep(5000);
 
@@ -118,24 +118,22 @@ public class MSG91Login {
 		Thread.sleep(5000);
 
 		WebElement template1 = driver.findElement(By.xpath("//input[@id='mat-input-3']"));
-		// template1.click();
 		template1.sendKeys("new_test");
-//		Thread.sleep(5000);
-//		template1.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
 		Thread.sleep(5000);
-		List<WebElement> template = driver.findElements(By.xpath("//div[@id='mat-autocomplete-1']"));
-		for (WebElement temp : template) {
-			String templatename = temp.getText();
-			System.out.println(templatename);
-			
-
-			Thread.sleep(5000);
-			if (templatename.equals("new_test")) {
-				temp.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-				temp.click();
-				break;
-			}
-	}
+		template1.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+		Thread.sleep(5000);
+//		List<WebElement> template = driver.findElements(By.xpath("//div[@id='mat-autocomplete-1']"));
+//		for (WebElement temp : template) {
+//			String templatename = temp.getText();
+//			System.out.println(templatename);
+//			
+//
+//			Thread.sleep(5000);
+//			if (templatename.equals("new_test")) {
+//				temp.click();
+//				break;
+//			}
+//	}
 		Thread.sleep(5000);
 		WebElement varvalue = driver.findElement(By.xpath("//input[@id='mat-input-4']"));
 		varvalue.sendKeys("prgtest");
@@ -143,7 +141,8 @@ public class MSG91Login {
 		WebElement reviewsend = driver.findElement(By.xpath(
 				"//mat-dialog-container[@id='mat-mdc-dialog-0']/div/div/msg91-send-whatsapp-dialog/div/div[1]/mat-dialog-actions/div[2]/button[2]"));
 		reviewsend.click();
-		WebElement send = driver.findElement(By.xpath("//*[@id=\"mat-mdc-dialog-0\"]/div/div/msg91-send-whatsapp-dialog/div/div[2]/mat-dialog-actions/button[2]"));
+		WebElement send = driver.findElement(By.xpath(
+				"//*[@id=\"mat-mdc-dialog-0\"]/div/div/msg91-send-whatsapp-dialog/div/div[2]/mat-dialog-actions/button[2]"));
 		send.click();
 
 	}
