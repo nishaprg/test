@@ -1,13 +1,8 @@
 package practicedummy;
 
 import java.time.Duration;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
-import org.junit.platform.commons.util.Preconditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -15,10 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class MSG91Login {
@@ -38,7 +29,8 @@ public class MSG91Login {
 		MSG91Login msg91 = new MSG91Login();
 		msg91.Websitelogin();
 		Thread.sleep(2000);
-		msg91.Whatsapp();
+		//msg91.Whatsapp();
+		msg91.templateCreate();
 
 	}
 
@@ -86,6 +78,10 @@ public class MSG91Login {
 
 		WebElement loginuser = driver.findElement(By.xpath("//button[@id='teamMemberLogin']"));
 		loginuser.click();
+		
+		WebElement service = driver.findElement(By.xpath(
+				"//a[@class='platform-card mat-elevation-z3 whatsapp-service cursor-pointer ng-star-inserted']"));
+		service.click();
 	}
 
 	public void Whatsapp() throws InterruptedException {
@@ -145,6 +141,33 @@ public class MSG91Login {
 				"//*[@id=\"mat-mdc-dialog-0\"]/div/div/msg91-send-whatsapp-dialog/div/div[2]/mat-dialog-actions/button[2]"));
 		send.click();
 
+	}
+	
+	public void templateCreate() throws InterruptedException {
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement templatemenu= driver.findElement(By.xpath("//a[@href='/hello-new/m/l/whatsapp/templates']"));
+		templatemenu.click();
+		Thread.sleep(3000);
+		WebElement createtemplate=driver.findElement(By.xpath("//button[@class='mat-btn-xs mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-base ng-star-inserted']"));
+		createtemplate.click();
+		Thread.sleep(3000);
+		WebElement templatename=driver.findElement(By.xpath("//input[@formcontrolname='templateName']"));
+		templatename.sendKeys("automationtemplate");
+		
+		Thread.sleep(3000);
+		
+		WebElement templatebody =driver.findElement(By.xpath("//textarea[@id='mainBody']"));
+		
+		templatebody.sendKeys("This is samplae registration form to submiit you registratrion");
+		Thread.sleep(3000);
+		
+		WebElement footer= driver.findElement(By.xpath("//input[@formcontrolname='footer']"));
+		footer.sendKeys("Thankyou");
+		
+		Thread.sleep(3000);
+		WebElement templatesave=driver.findElement(By.xpath("//button[@class='mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-primary mat-mdc-button-base']"));
+		templatesave.click();
 	}
 
 }
