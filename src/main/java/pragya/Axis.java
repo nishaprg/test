@@ -1,3 +1,4 @@
+// This is a sample comment added for demonstration purposes.
 package pragya;
 
 public class Axis implements RBI {
