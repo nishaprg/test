@@ -5,13 +5,13 @@ public class ReverseVowels {
     public static String reverseVowels(String input) {
         char[] chars = input.toCharArray();
         int left = 0, right = chars.length - 1;
-        String vowels = "aeiouAEIOU";
+        String vowel = "aeiouAEIOU";
 
         while (left < right) {
-            while (left < right && vowels.indexOf(chars[left]) == -1) {
+            while (left < right && vowel.indexOf(chars[left]) == -1) {
                 left++;
             }
-            while (left < right && vowels.indexOf(chars[right]) == -1) {
+            while (left < right && vowel.indexOf(chars[right]) == -1) {
                 right--;
             }
 
@@ -26,7 +26,7 @@ public class ReverseVowels {
 
         return new String(chars);
     }
-
+//this is a codde for reverese vowel string
     public static void main(String[] args) {
         String input = "testproduct";
         String result = reverseVowels(input);
