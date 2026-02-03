@@ -31,7 +31,7 @@ public class MSG91Login {
 		Thread.sleep(2000);
 		//msg91.Whatsapp();
 		//msg91.templateCreate();
-		msg91.logs();
+		msg91.csvSend();
 
 	}
 
@@ -50,7 +50,7 @@ public class MSG91Login {
 		sclick.click();
 
 		WebElement searchclient = driver.findElement(By.xpath("//input[@id='clientSearch']"));
-		searchclient.sendKeys("qa");
+		searchclient.sendKeys("msg91testwhatsapp");
 		Thread.sleep(5000);
 		WebElement client = driver.findElement(By.xpath("//div[@class='boxsize']/ul/li"));
 		client.click();
@@ -99,7 +99,7 @@ public class MSG91Login {
 
 		WebElement number = driver.findElement(By.xpath("//input[@id='mat-input-1']"));
 		// number.click();
-		number.sendKeys("917024100856");
+		number.sendKeys("917024100854");
 		Thread.sleep(5000);
 
 		List<WebElement> allnumber = driver.findElements(By.xpath("//div[@id=\"cdk-overlay-1\"]"));
@@ -107,7 +107,7 @@ public class MSG91Login {
 			String sendnumber = num.getText();
 			System.out.println(sendnumber);
 			Thread.sleep(3000);
-			if (sendnumber.equals("917024100856")) {
+			if (sendnumber.equals("917024100854")) {
 				num.click();
 				break;
 			}
@@ -187,6 +187,65 @@ public class MSG91Login {
 			}
 			
 		}
+	}
+	
+	public void csvSend() throws InterruptedException {
+		WebElement sendwhatsapp = driver.findElement(By.xpath(
+				"//div[@class='left-menu-center-container']/ng-component/app-whatsapp-left-menu/div/mat-nav-list/div[1]//a[1]/span/span"));
+		sendwhatsapp.click();
+		WebElement csv= driver.findElement(By.xpath("//*[text()='CSV file']"));
+		csv.click();
+		WebElement upload = driver.findElement(By.id("file-upload"));
+		upload.sendKeys("C:\\Users\\WALK-COMP-035\\Desktop\\email_file\\dynamicf.csv");
+		Thread.sleep(3000);
+		WebElement csvcolumn = driver.findElement(By.xpath("//input[@placeholder='Select Mobiles']"));
+		csvcolumn.click();		csvcolumn.sendKeys("phonenumber");
+//		Thread.sleep(5000);
+//		number.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+		Thread.sleep(5000);
+		
+		
+		
+		List<WebElement> csvlist= driver.findElements(By.xpath("//div[@role='listbox']"));
+		for(WebElement list:csvlist) {
+			ssssString column= list.getText().trim();
+			System.out.println(column);
+		Thread.sleep(5000);
+			if(column.equalsIgnoreCase("A (phonenumber)")) {
+				list.click();
+				break;
+			}
+		}
+		WebElement number = driver.findElement(By.xpath("//input[@id='mat-input-1']"));
+		// number.click();
+		number.sendKeys("917024100854");
+		number.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+		Thread.sleep(5000);
+
+//		List<WebElement> allnumber = driver.findElements(By.xpath("//div[@id=\"cdk-overlay-1\"]"));
+//		for (WebElement num : allnumber) {
+//			String sendnumber = num.getText();
+//			System.out.println(sendnumber);
+//			Thread.sleep(3000);
+//			if (sendnumber.equals("917024100854")) {
+//				num.click();
+//				break;
+//			}
+//		}
+		Thread.sleep(5000);
+		WebElement template1 = driver.findElement(By.xpath("//*[text()='Select WhatsApp Template']"));
+		template1.click();
+		template1.sendKeys("utility_tsads");
+		Thread.sleep(5000);
+		template1.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+		Thread.sleep(5000);
+		WebElement reviewsend = driver.findElement(By.xpath(
+				"//mat-dialog-container[@id='mat-mdc-dialog-0']/div/div/msg91-send-whatsapp-dialog/div/div[1]/mat-dialog-actions/div[2]/button[2]"));
+		reviewsend.click();
+		WebElement send = driver.findElement(By.xpath(
+				"//*[@id=\"mat-mdc-dialog-0\"]/div/div/msg91-send-whatsapp-dialog/div/div[2]/mat-dialog-actions/button[2]"));
+		send.click();
+
 	}
 		
 }
