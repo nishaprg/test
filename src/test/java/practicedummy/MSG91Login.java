@@ -208,7 +208,7 @@ public class MSG91Login {
 		
 		List<WebElement> csvlist= driver.findElements(By.xpath("//div[@role='listbox']"));
 		for(WebElement list:csvlist) {
-			ssssString column= list.getText().trim();
+		String column= list.getText().trim();
 			System.out.println(column);
 		Thread.sleep(5000);
 			if(column.equalsIgnoreCase("A (phonenumber)")) {
@@ -235,6 +235,7 @@ public class MSG91Login {
 		Thread.sleep(5000);
 		WebElement template1 = driver.findElement(By.xpath("//*[text()='Select WhatsApp Template']"));
 		template1.click();
+		Thread.sleep(5000);
 		template1.sendKeys("utility_tsads");
 		Thread.sleep(5000);
 		template1.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
